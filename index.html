@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dolomitas · Junio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="stars"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title"><em>Dolomitas</em></h1>
+    <p class="hero-subtitle">22–28 junio 2026</p>
+    <div id="countdown" class="hero-countdown"></div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>scroll</span>
+    <svg width="12" height="16" viewBox="0 0 12 16" fill="none"><path d="M6 1v10M1 8l5 6 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="navTo('itinerary')">Itinerario</button>
+    <button class="nav-btn" onclick="navTo('map')">Mapa</button>
+    <button class="nav-btn" onclick="navTo('checklist')">Reservas</button>
+    <button class="nav-btn" onclick="navTo('maleta')">Maleta</button>
+    <button class="nav-btn" onclick="navTo('tips')">Tips</button>
+  </div>
+</nav>
+
+<!-- ITINERARY -->
+<section id="itinerary" style="background:var(--mist); padding: 4rem 0;">
+<div class="section" style="padding-top:0; padding-bottom:0;">
+  <div class="section-label">Día a día</div>
+  <h2 class="section-title">El plan</h2>
+
+  <div class="day-tabs">
+    <button class="day-tab active" onclick="showDay(0)">22 jun</button>
+    <button class="day-tab" onclick="showDay(1)">23 jun</button>
+    <button class="day-tab" onclick="showDay(2)">24 jun</button>
+    <button class="day-tab" onclick="showDay(3)">25 jun</button>
+    <button class="day-tab" onclick="showDay(4)">26 jun</button>
+    <button class="day-tab" onclick="showDay(5)">27 jun</button>
+    <button class="day-tab" onclick="showDay(6)">28 jun</button>
+  </div>
+
+  <!-- Day 0: 22 jun -->
+  <div class="day-panel active" id="day-0">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Jueves 22 — Llegada</div>
+        <div class="day-badges"><span class="badge badge-sleep">Dormir: Lago di Carezza</span></div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">✈️</div>
+        <div class="spot-body">
+          <div class="spot-name">14:55 — MXP · Rafa y Natalia</div>
+          <div class="spot-desc">Vuelo desde Madrid (12:50 MAD). Aterrizaje en Malpensa. Recogida de la camper en Indie Campers — Vía Giacomo Matteotti, 6, 21010 Ferno VA.</div>
+          <div class="spot-stats"><span class="stat">FR 2753 MAD 12:50 → MXP 14:55</span><span class="stat">Ferno VA (cerca T1)</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">✈️</div>
+        <div class="spot-body">
+          <div class="spot-name">18:05 — BGY · Clau y Guille</div>
+          <div class="spot-desc">Vuelo Ryanair FR77 desde Sevilla. Recogida en aeropuerto de Bérgamo. MXP→BGY son ~45 min.</div>
+          <div class="spot-stats"><span class="stat">FR77 SVQ 15:30 → BGY 18:05</span><span class="stat">45 min MXP→BGY</span><span class="stat">Aparcar P3 largo</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🌲</div>
+        <div class="spot-body">
+          <div class="spot-name">~21:30 — Lago di Carezza</div>
+          <div class="spot-desc">BGY→Carezza son 2h15. Llegada nocturna para dormir junto al lago. Primera noche en la camper.</div>
+          <div class="spot-stats"><span class="stat">2h15 desde BGY</span><span class="stat">Área Nova Levante</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-info">💡 Aprovechad para hacer compra antes de salir hacia las Dolomitas — los supermercados en zona montaña cierran pronto.</div>
+  </div>
+
+  <!-- Day 1: 23 jun -->
+  <div class="day-panel" id="day-1">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Viernes 23 — Carezza + Alpe di Siusi</div>
+        <div class="day-badges">
+          <span class="badge badge-warn">⏰ Madrugar</span>
+          <span class="badge badge-sleep">Dormir: Val Gardena</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">🌅</div>
+        <div class="spot-body">
+          <div class="spot-name">Amanecer en Lago di Carezza</div>
+          <div class="spot-desc">El lago más fotogénico de las Dolomitas. Colores increíbles por la mañana temprano.</div>
+          <div class="spot-stats"><span class="stat">30–45 min</span><span class="stat">Paseo corto</span><span class="stat">Salida: 7:00</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🏔️</div>
+        <div class="spot-body">
+          <div class="spot-name">Alpe di Siusi / Seiser Alm</div>
+          <div class="spot-desc">El altiplano alpino más grande de Europa. Circular Compatsch–Malga Spitzbühl. Subir ANTES de las 9:00 — la carretera cierra al tráfico privado.</div>
+          <div class="spot-stats"><span class="stat">8–10 km</span><span class="stat">+250m</span><span class="stat">2,5–3,5h</span><span class="stat">Fácil</span><span class="stat">~15–20€ aparcar</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🌄</div>
+        <div class="spot-body">
+          <div class="spot-name">Atardecer en Passo Sella — recomendación</div>
+          <div class="spot-desc">Uno de los mejores atardeceres de las Dolomitas. El paso tiene vistas directas al Sassolungo y al Grupo Sella — las paredes se tiñen de naranja y rojo. Está a solo 15 min desde Ortisei, perfectamente de camino hacia Val Gardena donde dormiréis.</div>
+          <div class="spot-stats"><span class="stat">15 min desde Ortisei</span><span class="stat">Parking gratuito en el paso</span><span class="stat">Fácil acceso en camper</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-crit">🚨 CRÍTICO: la carretera cierra al tráfico privado aprox. 9:00–17:00. Sin llegar antes de las 9h tendréis que usar bus lanzadera y dejar la camper abajo.</div>
+    <div class="alert-box alert-sleep">🌙 Bajad por la tarde, parad en Passo Sella para el atardecer y aparcar en zona Ortisei/Val Gardena para empezar el día 24 desde allí.</div>
+  </div>
+
+  <!-- Day 2: 24 jun -->
+  <div class="day-panel" id="day-2">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Sábado 24 — Seceda + Ortisei + Val di Funes</div>
+        <div class="day-badges">
+          <span class="badge badge-res">🎫 Reservar teleférico</span>
+          <span class="badge badge-sleep">Dormir: zona Misurina/Cortina</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">🚡</div>
+        <div class="spot-body">
+          <div class="spot-name">Seceda desde Col Raiser</div>
+          <div class="spot-desc">Uno de los paisajes más espectaculares de las Dolomitas. Agujas del Odle desde las crestas. Teleférico desde Col Raiser.</div>
+          <div class="spot-stats"><span class="stat">9–12 km</span><span class="stat">+350–400m</span><span class="stat">3–4h</span><span class="stat">Media</span><span class="stat">~32€/persona teleférico</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🍽️</div>
+        <div class="spot-body">
+          <div class="spot-name">Ortisei — paseo y comida</div>
+          <div class="spot-desc">Pueblo tirolés precioso. Buenas opciones de menú del día y heladerías.</div>
+          <div class="spot-stats"><span class="stat">1–1,5h</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">⛪</div>
+        <div class="spot-body">
+          <div class="spot-name">Val di Funes — Santa Maddalena</div>
+          <div class="spot-desc">La foto más icónica de las Dolomitas: la pequeña iglesia con el macizo del Odle de fondo. Perfecta para el atardecer.</div>
+          <div class="spot-stats"><span class="stat">4–6 km</span><span class="stat">+150–200m</span><span class="stat">1,5–2h</span><span class="stat">Fácil</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-info">💡 Reservad el teleférico Col Raiser online — en sábado de junio puede haber 1h de cola sin reserva. Buscad "Col Raiser Seilbahn prenotazione".</div>
+    <div class="alert-box alert-sleep">🌙 Después de Val di Funes, conducid hacia zona Misurina/Cortina (~1h30) para dormir cerca. Así el acceso a Tre Cime el día 25 es cortísimo y podéis llegar temprano.</div>
+  </div>
+
+  <!-- Day 3: 25 jun -->
+  <div class="day-panel" id="day-3">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Domingo 25 — Tre Cime + Cadini</div>
+        <div class="day-badges">
+          <span class="badge badge-res">🚨 Reservar acceso obligatorio</span>
+          <span class="badge badge-sleep">Dormir: Misurina/Cortina</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">🗻</div>
+        <div class="spot-body">
+          <div class="spot-name">Tre Cime di Lavaredo — circular</div>
+          <div class="spot-desc">El símbolo de las Dolomitas. Circular clásica alrededor de las tres cumbres. Acceso con peaje obligatorio.</div>
+          <div class="spot-stats"><span class="stat">9–10 km</span><span class="stat">+350m</span><span class="stat">3,5–4,5h</span><span class="stat">Media</span><span class="stat">~30–35€ peaje</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🔵</div>
+        <div class="spot-body">
+          <div class="spot-name">Cadini di Misurina</div>
+          <div class="spot-desc">Agujas menos conocidas y menos masificadas que las Tre Cime. Tramo con cable, requiere atención. Un joyón.</div>
+          <div class="spot-stats"><span class="stat">3–4 km</span><span class="stat">+150m</span><span class="stat">1,5–2h</span><span class="stat">Media</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">💧</div>
+        <div class="spot-body">
+          <div class="spot-name">Lago Antorno — parada rápida</div>
+          <div class="spot-desc">Vista perfecta de las Tre Cime desde el agua. 15 minutos.</div>
+          <div class="spot-stats"><span class="stat">15 min</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-crit">🚨 MUY IMPORTANTE: el acceso en coche a Rifugio Auronzo requiere reserva de peaje anticipada en verano. Buscad "Drei Zinnen Auffahrt reservierung". Sin reserva pueden no dejarte subir. También está la opción de subir en bus lanzadera desde el refugio (abierta a partir de finales de Mayo).</div>
+  </div>
+
+  <!-- Day 4: 26 jun -->
+  <div class="day-panel" id="day-4">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Lunes 26 — Sorapis + Passo Giau</div>
+        <div class="day-badges">
+          <span class="badge badge-sleep">Dormir: zona Dobbiaco / Val Pusteria</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">🩵</div>
+        <div class="spot-body">
+          <div class="spot-name">Lago di Sorapis</div>
+          <div class="spot-desc">Agua de color turquesa irreal. Una de las rutas más impresionantes de las Dolomitas. Tramos estrechos con cable — llevar buenas botas de trekking, no vale con deportivas.</div>
+          <div class="spot-stats"><span class="stat">11–13 km</span><span class="stat">+500–600m</span><span class="stat">4–5h</span><span class="stat">Media</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">✚</div>
+        <div class="spot-body">
+          <div class="spot-name">Bonus: Passo Falzarego / Lagazuoi</div>
+          <div class="spot-desc">De camino hacia Giau. Teleférico de Lagazuoi con vistas 360° absolutas. Merece 45 minutos si tenéis energía.</div>
+          <div class="spot-stats"><span class="stat">45 min</span><span class="stat">De camino</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🌇</div>
+        <div class="spot-body">
+          <div class="spot-name">Passo Giau — atardecer</div>
+          <div class="spot-desc">Uno de los atardeceres más icónicos de las Dolomitas. Aparcamiento gratuito con espacio para campers.</div>
+          <div class="spot-stats"><span class="stat">2–3 km</span><span class="stat">+100m</span><span class="stat">1h</span><span class="stat">Fácil</span><span class="stat">Parking gratis</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-sleep">🌙 Tras el atardecer en Passo Giau conducid ~2h hasta zona Dobbiaco (Val Pusteria). Es un valle precioso al pie de los Dolomitas y estaréis a solo 20 min de Braies — así el día 27 no hay que madrugar para conducir, solo para llegar al lago.</div>
+  </div>
+
+  <!-- Day 5: 27 jun -->
+  <div class="day-panel" id="day-5">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Martes 27 — Braies → Cinque Torri → Bergamo</div>
+        <div class="day-badges">
+          <span class="badge badge-warn">⏰ Braies: llegar antes de 8:30</span>
+          <span class="badge badge-sleep">Dormir: zona Bergamo</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">🌊</div>
+        <div class="spot-body">
+          <div class="spot-name">Lago di Braies — muy temprano (antes 8:30)</div>
+          <div class="spot-desc">El lago más famoso de las Dolomitas. Agua verde esmeralda, barcas de madera rojas. Es imprescindible llegar antes de las 8:30 — el aparcamiento se llena muy rápido y cierran el acceso.</div>
+          <div class="spot-stats"><span class="stat">3,5–4 km</span><span class="stat">+50m</span><span class="stat">1–1,5h</span><span class="stat">Muy fácil</span><span class="stat">~8–10€ aparcar</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🗻</div>
+        <div class="spot-body">
+          <div class="spot-name">Cinque Torri — de camino a Bergamo</div>
+          <div class="spot-desc">Torres dolomíticas únicas. Zona con trincheras de la Primera Guerra Mundial. Desde Braies son ~1h15, perfectamente de paso hacia Bergamo.</div>
+          <div class="spot-stats"><span class="stat">5–6 km</span><span class="stat">+200m</span><span class="stat">2–3h</span><span class="stat">Fácil</span><span class="stat">~1h15 desde Braies</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🚐</div>
+        <div class="spot-body">
+          <div class="spot-name">Conducción hacia zona Bergamo</div>
+          <div class="spot-desc">Braies→Bergamo ~2h30. Posicionaros cerca del aeropuerto para la entrega del día 28.</div>
+          <div class="spot-stats"><span class="stat">~2h30</span><span class="stat">Última noche en camper</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-crit">🚨 Lago di Braies: llegad ANTES de las 8:30. Si el parking está lleno habrá shuttle obligatorio desde abajo y perderéis la magia de la mañana en el lago. El parking P4 es el más cercano y el P3 no admite campers.</div>
+    <div class="alert-box alert-info">💡 Limpiad la camper esta noche antes de dormir. Indie Campers cobra extra por suciedad excesiva.</div>
+  </div>
+
+  <!-- Day 6: 28 jun -->
+  <div class="day-panel" id="day-6">
+    <div class="day-header-bar">
+      <div>
+        <div class="day-date">Miércoles 28 — Vuelta a casa</div>
+        <div class="day-badges">
+          <span class="badge badge-sleep">✈️ MXP 12:40 → SVQ 15:20</span>
+        </div>
+      </div>
+    </div>
+    <div class="spots-list">
+      <div class="spot-item">
+        <div class="spot-icon">⏰</div>
+        <div class="spot-body">
+          <div class="spot-name">7:00 — Salida</div>
+          <div class="spot-desc">Desde zona Bergamo/Brescia hacia Malpensa.</div>
+          <div class="spot-stats"><span class="stat">~50 min a MXP</span></div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">🚐</div>
+        <div class="spot-body">
+          <div class="spot-name">9:00–9:30 — Entrega camper MXP</div>
+          <div class="spot-desc">Devolución en Indie Campers (Vía Giacomo Matteotti, 6, Ferno VA). Revisión del vehículo.</div>
+        </div>
+      </div>
+      <div class="spot-item">
+        <div class="spot-icon">✈️</div>
+        <div class="spot-body">
+          <div class="spot-name">12:40 — Vuelo de vuelta (todos)</div>
+          <div class="spot-desc">Salida desde MXP. Llegada a Sevilla (SVQ) a las 15:20. ¡Hasta la próxima!</div>
+          <div class="spot-stats"><span class="stat">MXP 12:40 → SVQ 15:20</span><span class="stat">Los 4 juntos</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="alert-box alert-info">💡 Con la entrega a las 9:30 y el vuelo a las 12:40 tenéis tiempo de sobra. No corráis.</div>
+  </div>
+
+</div>
+</section>
+
+<!-- MAP -->
+<section id="map" class="section" style="padding-top: 6rem;">
+  <div class="section-label">Ruta</div>
+  <h2 class="section-title">Los spots</h2>
+  <div id="map"></div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" class="section">
+  <div class="section-label">Gestión</div>
+  <h2 class="section-title">Reservas pendientes</h2>
+
+  <div class="checklist-grid">
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Acceso Tre Cime (peaje)</div>
+        <div class="check-sub">Rifugio Auronzo · ~30–35€ · Día 25</div>
+        <div class="check-urgent">🚨 Urgente — se llena meses antes</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Teleférico Col Raiser</div>
+        <div class="check-sub">Acceso a Seceda · ~32€/persona · Día 24</div>
+        <div class="check-urgent">Recomendado reservar</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">App Offline Maps descargada</div>
+        <div class="check-sub">Komoot o Maps.me · Zona Dolomitas</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="checklist-progress" style="margin-top:1.5rem; font-size:13px; color:var(--stone);"></div>
+</section>
+
+<!-- MALETA -->
+<section id="maleta" class="section" style="padding-top:0;">
+  <div class="section-label">Equipaje</div>
+  <h2 class="section-title">Lista de maleta</h2>
+
+  <div class="checklist-grid">
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Cámara de fotos</div>
+        <div class="check-sub">Imprescindible para los paisajes</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Toalla</div>
+        <div class="check-sub">Para los lagos y la camper</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Trapos para platos</div>
+        <div class="check-sub">Para cocinar en la camper</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Botas de trekking</div>
+        <div class="check-sub">Necesarias para Sorapis y Cadini (tramos con cable)</div>
+        <div class="check-urgent">Imprescindible</div>
+      </div>
+    </div>
+    <div class="check-card" onclick="toggleCheck(this)">
+      <div class="check-box"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4.5L4.5 8L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div>
+        <div class="check-name">Chubasquero</div>
+        <div class="check-sub">Las tormentas de tarde son habituales en los Dolomitas en verano</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips" class="section" style="padding-top:0;">
+  <div class="section-label">Consejos</div>
+  <h2 class="section-title">Recomendaciones</h2>
+
+  <div class="tip-list">
+    <div class="tip-card">
+      <div class="tip-icon">🛒</div>
+      <div>
+        <div class="tip-name">Supermercados Conad</div>
+        <div class="tip-sub">Cadena presente en toda la zona de las Dolomitas. Buen surtido y precios razonables. Buscad siempre uno al salir de cada etapa — en zonas de montaña los horarios son más reducidos.</div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🧊</div>
+      <div>
+        <div class="tip-name">Comprar una neverita para la cerveza</div>
+        <div class="tip-sub">Las campers de Indie Campers llevan nevera, pero una pequeña neverita portátil va genial para las rutas y tener bebidas frías a mano sin abrir la camper.</div>
+      </div>
+    </div>
+    <div class="tip-card">
+      <div class="tip-icon">🚐</div>
+      <div>
+        <div class="tip-name">Poner la pantalla de la furgo en español</div>
+        <div class="tip-sub">Al recoger la camper, pedir al personal de Indie Campers que configuren el idioma del sistema de navegación/multimedia en español. Mucho más cómodo para la conducción.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Dolomitas · Junio 2026
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
