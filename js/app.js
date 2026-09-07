@@ -2,15 +2,13 @@
 const spots = [
   { name: "Lago di Carezza",      lat: 46.408, lng: 11.577, day: "Día 22–23",  color: "#2D5016", img: "carezza.jpg" },
   { name: "Alpe di Siusi",        lat: 46.541, lng: 11.622, day: "Día 23",     color: "#4A7FA5", img: "siusi.jpg" },
-  { name: "Passo Sella",          lat: 46.508, lng: 11.757, day: "Día 23",     color: "#4A7FA5", img: "siusi.jpg" },
+  { name: "Passo Sella",          lat: 46.508, lng: 11.757, day: "Día 23",     color: "#4A7FA5", img: "pasogiau.jpg" },
   { name: "Seceda / Col Raiser",  lat: 46.593, lng: 11.713, day: "Día 24",     color: "#C4602A", img: "seceda.jpg" },
   { name: "Val di Funes",         lat: 46.666, lng: 11.745, day: "Día 24",     color: "#C4602A", img: "valdifuness.jpg" },
-  { name: "Tre Cime di Lavaredo", lat: 46.620, lng: 12.301, day: "Día 25",     color: "#8B0000", img: "trecime.jpg" },
   { name: "Cadini di Misurina",   lat: 46.588, lng: 12.264, day: "Día 25",     color: "#8B0000", img: "cadini.jpg" },
+  { name: "Tre Cime di Lavaredo", lat: 46.620, lng: 12.301, day: "Día 25",     color: "#8B0000", img: "trecime.jpg" },
   { name: "Lago di Sorapis",      lat: 46.505, lng: 12.201, day: "Día 26",     color: "#1a5f7a", img: "sorapis.jpg" },
-  { name: "Passo Giau",           lat: 46.484, lng: 12.054, day: "Día 26",     color: "#B8860B", img: "pasogiau.jpg" },
   { name: "Lago di Braies",       lat: 46.694, lng: 12.084, day: "Día 27",     color: "#2D5016", img: "braies.jpg" },
-  { name: "Cinque Torri",         lat: 46.504, lng: 12.009, day: "Día 27",     color: "#2D5016", img: "cinque-torri.jpg" },
 ];
 
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false }).setView([46.55, 11.9], 9);
@@ -47,7 +45,7 @@ L.polyline(spots.map(s => [s.lat, s.lng]), {
 
 
 // ── TRAVEL TIMES & ANIMATED CAMPER ──
-const travelTimes = ['45 min', '30 min', '20 min', '25 min', '1h 30min', '15 min', '30 min', '45 min', '2h', '1h 15min'];
+const travelTimes = ['45 min', '30 min', '20 min', '25 min', '1h 30min', '15 min', '30 min', '2h'];
 
 function camperIcon(goingWest) {
   return L.divIcon({
@@ -148,42 +146,6 @@ window.addEventListener('scroll', () => {
 });
 
 
-// ── COUNTDOWN ──
-function updateCountdown() {
-  const tripStart = new Date('2026-06-22T00:00:00');
-  const tripEnd   = new Date('2026-06-28T23:59:59');
-  const now       = new Date();
-  const el        = document.getElementById('countdown');
-  if (!el) return;
-
-  if (now >= tripStart && now <= tripEnd) {
-    el.innerHTML = '<div class="countdown-msg">¡Estáis en las Dolomitas! 🏔️</div>';
-    return;
-  }
-  if (now > tripEnd) {
-    const days = Math.floor((now - tripEnd) / (1000 * 60 * 60 * 24));
-    el.innerHTML = `<div class="countdown-msg">Viaje completado ✓ · hace ${days} días</div>`;
-    return;
-  }
-
-  const diff  = tripStart - now;
-  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const secs  = Math.floor((diff % (1000 * 60)) / 1000);
-
-  el.innerHTML = `
-    <div class="countdown-unit"><span class="countdown-num">${days}</span><div class="countdown-lbl">días</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><span class="countdown-num">${String(hours).padStart(2,'0')}</span><div class="countdown-lbl">horas</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><span class="countdown-num">${String(mins).padStart(2,'0')}</span><div class="countdown-lbl">min</div></div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit"><span class="countdown-num">${String(secs).padStart(2,'0')}</span><div class="countdown-lbl">seg</div></div>`;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
 
 
 // ── CHECKLIST (persiste en localStorage por nombre de item) ──
